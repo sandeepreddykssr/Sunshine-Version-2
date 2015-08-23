@@ -24,9 +24,6 @@ import com.example.android.sunshine.app.data.WeatherContract;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by sandeep on 23-08-2015.
- */
 public class DetailFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -144,8 +141,7 @@ public class DetailFragment extends Fragment
         Uri uri = mForecastURI;
         if (null != uri) {
             long date = WeatherContract.WeatherEntry.getDateFromUri(uri);
-            Uri updatedUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(newLocation, date);
-            mForecastURI = updatedUri;
+            mForecastURI = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(newLocation, date);
             getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
         }
     }

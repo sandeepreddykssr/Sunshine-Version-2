@@ -1,9 +1,5 @@
 package com.example.android.sunshine.app;
 
-/**
- * Created by sandeep on 17-08-2015.
- */
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.sunshine.app.data.WeatherContract;
+
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -149,7 +147,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
         String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
 
-        Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocation(locationSetting);
+        Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(locationSetting, new Date().getTime());
 
         return new CursorLoader(getActivity(),
                 weatherForLocationUri,
